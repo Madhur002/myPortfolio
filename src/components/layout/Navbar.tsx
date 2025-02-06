@@ -25,7 +25,7 @@ export default function Navbar() {
           <span className="sr-only">Open menu</span>
           <div className="w-6 h-6 flex items-center justify-center">
             <div className="w-5 h-2 flex flex-col justify-between">
-              <div className={`w-full h-0.5 bg-white transition-all ${isOpen ? 'rotate-45 translate-y-0.5' : ''}`}></div>
+              <div className={`w-full h-0.5 bg-white transition-all ${isOpen ? 'rotate-45 translate-y-1' : ''}`}></div>
               {/* <div className={`w-full h-0.5 bg-white transition-all ${isOpen ? 'opacity-0' : ''}`}></div> */}
               <div className={`w-full h-0.5 bg-white transition-all ${isOpen ? '-rotate-45 -translate-y-0.5' : ''}`}></div>
             </div>

@@ -46,7 +46,7 @@ export default function Technologies() {
   const duplicatedTechnologies = [...technologies, ...technologies];
 
   return (
-    <section id='technologies' className="py-20 bg-white dark:bg-gray-900 overflow-hidden">
+    <section id='technologies' className="py-20 overflow-hidden">
       <div className="container mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: 20 }}

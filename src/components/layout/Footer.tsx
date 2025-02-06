@@ -5,35 +5,35 @@ export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-white/80 dark:bg-gray-900/80 backdrop-blur-sm mt-auto">
+    <footer className="bg-gradient-to-b from-white to-white pt-[400px] mt-auto">
       <div className="container mx-auto px-4 py-8">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* Brand Section */}
           <div className="col-span-1 md:col-span-2">
-            <Link href="/" className="text-xl font-bold mb-4 block">
+            <Link href="/" className="text-black text-xl font-bold mb-4 block">
               Portfolio
             </Link>
-            <p className="text-gray-600 dark:text-gray-400">
+            <p className="text-gray-800">
               Building amazing web experiences with modern technologies.
             </p>
           </div>
 
           {/* Quick Links */}
           <div className="col-span-1">
-            <h3 className="font-semibold mb-4">Quick Links</h3>
+            <h3 className="font-semibold mb-4 text-black">Quick Links</h3>
             <ul className="space-y-2">
               <li>
-                <Link href="/projects" className="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-500">
+                <Link href="/projects" className="text-gray-800 hover:text-blue-600 dark:hover:text-blue-500">
                   Projects
                 </Link>
               </li>
               <li>
-                <Link href="/blog" className="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-500">
+                <Link href="/blog" className="text-gray-800 hover:text-blue-600 dark:hover:text-blue-500">
                   Blog
                 </Link>
               </li>
               <li>
-                <Link href="/contact" className="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-500">
+                <Link href="/contact" className="text-gray-800 hover:text-blue-600 dark:hover:text-blue-500">
                   Contact
                 </Link>
               </li>
@@ -42,14 +42,14 @@ export default function Footer() {
 
           {/* Social Links */}
           <div className="col-span-1">
-            <h3 className="font-semibold mb-4">Connect</h3>
+            <h3 className="font-semibold mb-4 text-black ">Connect</h3>
             <ul className="space-y-2">
               <li>
                 <a
                   href="https://github.com"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-500"
+                  className="text-gray-800 hover:text-blue-600 dark:hover:text-blue-500"
                 >
                   GitHub
                 </a>
@@ -59,7 +59,7 @@ export default function Footer() {
                   href="https://linkedin.com"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-500"
+                  className="text-gray-800 hover:text-blue-600 dark:hover:text-blue-500"
                 >
                   LinkedIn
                 </a>
@@ -69,7 +69,7 @@ export default function Footer() {
                   href="https://twitter.com"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-500"
+                  className="text-gray-800 hover:text-blue-600 dark:hover:text-blue-500"
                 >
                   Twitter
                 </a>
@@ -79,7 +79,7 @@ export default function Footer() {
         </div>
 
         {/* Copyright */}
-        <div className="border-t border-gray-200 dark:border-gray-700 mt-8 pt-8 text-center text-gray-600 dark:text-gray-400">
+        <div className="border-t border-gray-200 dark:border-gray-700 mt-8 pt-8 text-center text-gray-800">
           <p>© {currentYear} Your Name. All rights reserved.</p>
         </div>
       </div>

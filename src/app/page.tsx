@@ -13,8 +13,8 @@ export default function Home() {
       <FadingText />
       {/* <ImageShowcase /> */}
       <Technologies />
-      <About/>
-      <Services/>
+      {/* <About/> */}
+      {/* <Services/> */}
     </Layout>
   );
 }

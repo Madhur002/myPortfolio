@@ -11,7 +11,7 @@ export default function FadingText() {
   });
 
   // Split text into words and add proper spacing
-  const text = "Madhur is the best developer ever created on the entire planet";
+  const text = "Hi I'm Madhur, your Full stack developer from India.";
   const words = text.split(" ");
   
   // Calculate progress steps for each word
