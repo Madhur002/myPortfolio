@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { FiArrowUpRight } from 'react-icons/fi';
 
 import { useEffect, useRef, useState } from 'react';
+import Image from 'next/image';
 export default function Hero() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const buttonRef = useRef<HTMLDivElement>(null);
@@ -143,7 +144,9 @@ export default function Hero() {
 
   return (
     <section className="min-h-screen flex items-center relative overflow-hidden">
-      <div className="container rounded-3xl mx-auto p-10 bg-white border-2 transition-all duration-300 border-purple-500 z-50">
+      <div className="container relative overflow-hidden rounded-3xl mx-auto p-10 bg-white border-2 transition-all duration-300 border-purple-500 z-50">
+        <Image src="/chakras/sahasrara.png" className='absolute top-[-50px] right-[-200px]' alt="sahasrara" width={500} height={500} />
+
         <div className="flex flex-col md:flex-row items-center justify-between">
           {/* Text Content */}
           <motion.div 
@@ -174,11 +177,12 @@ export default function Hero() {
             <div className="relative overflow-hidden w-[500px] border-4 border-purple-500 bg-gradient-to-r from-violet-500 to-purple-500 rounded-full h-[300px]">
               <img
                 src="/profile.png"
-                alt="Lamp On"
-                className="absolute scale-110  w-full h-full object-contain rounded-full transition-all duration-300"
+                alt="profile"
+                className="absolute scale-110 hover:scale-[1.15]  w-full z-50 h-full object-contain rounded-full transition-all duration-300"
               />
+                      <Image src="/chakras/sahasrara.png" className='absolute invert top-[-120px] right-[-287px]' alt="sahasrara" width={500} height={500} />
             </div>
-            <div className="relative w-10 h-10 rounded-full">
+            <div className="hidden relative w-10 h-10 rounded-full">
               <div className="absolute w-full h-full rounded-full bg-purple-500"></div>
             </div>
           </div>
