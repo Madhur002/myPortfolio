@@ -11,7 +11,7 @@ export default function Home() {
     <Layout>
       <Hero/>
       <FadingText />
-      <ImageShowcase />
+      {/* <ImageShowcase /> */}
       <Technologies />
       <About/>
       <Services/>

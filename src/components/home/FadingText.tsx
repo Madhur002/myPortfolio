@@ -7,7 +7,7 @@ export default function FadingText() {
   
   const { scrollYProgress } = useScroll({
     target: containerRef,
-    offset: ["start center", "center center"]
+    offset: ["start center", "end center"]
   });
 
   // Split text into words and add proper spacing
