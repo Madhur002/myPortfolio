@@ -4,6 +4,7 @@ import About from '@/components/home/About';
 import Services from '@/components/home/Services';
 import FadingText from '@/components/home/FadingText';
 import ImageShowcase from '@/components/home/ImageShowcase';
+import Technologies from '@/components/home/Technologies';
 
 export default function Home() {
   return (
@@ -11,6 +12,7 @@ export default function Home() {
       <Hero/>
       <FadingText />
       <ImageShowcase />
+      <Technologies />
       <About/>
       <Services/>
     </Layout>

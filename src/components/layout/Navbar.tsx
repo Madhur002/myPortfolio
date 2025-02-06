@@ -1,34 +1,13 @@
 "use client"
-import { useState, useEffect } from 'react';
-import Link from 'next/link';
 import { motion } from 'framer-motion';
+import Link from 'next/link';
+import { useState } from 'react';
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
-  const [textColor, setTextColor] = useState('text-black');
-
-  // Function to check background color and adjust text color
-  useEffect(() => {
-    const handleScroll = () => {
-      const pixels = window.pageYOffset;
-      const currentSection = Math.floor(pixels / window.innerHeight);
-      
-      // You can adjust these breakpoints based on your sections
-      if (currentSection === 0) { // Hero section
-        setTextColor('text-white');
-      } else if (currentSection === 1) { // Second section
-        setTextColor('text-black');
-      } else {
-        setTextColor('text-white');
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
 
   return (
-    <nav className={`fixed w-full backdrop-blur-sm z-[9999] transition-colors duration-300 ${textColor}`}>
+    <nav className={`fixed w-full backdrop-blur-sm z-[9999] transition-colors duration-300`}>
       <div className="container mx-auto px-4">
         <div className="flex justify-between items-center h-16">
           <Link href="/" className="text-xl font-bold">

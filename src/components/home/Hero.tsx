@@ -112,7 +112,7 @@ export default function Hero() {
             animate={{ opacity: 1 }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            <div className="relative w-4 h-4">
+            <div className="relative w-10 h-10 border-4 border-black rounded-full">
               <div className="absolute w-full h-full rounded-full bg-purple-500"></div>
             </div>
           </motion.div>
