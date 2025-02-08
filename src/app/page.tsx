@@ -36,12 +36,24 @@ export default function Home() {
       transition={{ duration: 0.5, delay: 3.5 }}
     >
       <Layout>
-        <Hero/>
-        <FadingText />
-        <ImageShowcase />
-        <Technologies />
-        <About/>
-        <Services/>
+        <section id="hero" className="min-h-screen">
+          <Hero/>
+        </section>
+        <section id="fadingText" className="min-h-screen">
+          <FadingText />
+        </section>
+        <section id="imageShowcase" className="min-h-screen">
+          <ImageShowcase />
+        </section>
+        <section id="technologies" className="min-h-screen">
+          <Technologies />
+        </section>
+        <section id="about-section" className="min-h-screen">
+          <About/>
+        </section>
+        <section id="services" className="min-h-screen">
+          <Services/>
+        </section>
       </Layout>
     </motion.div>
   );

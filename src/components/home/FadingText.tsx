@@ -11,7 +11,7 @@ export default function FadingText() {
   });
 
   // Split text into words and add proper spacing
-  const text = "Hi I'm Madhur, your Full stack developer from India .";
+  const text = "Hi I'm Madhur, your Full stack developer from India";
   const words = text.split(" ");
   
   // Calculate progress steps for each word
@@ -46,7 +46,7 @@ export default function FadingText() {
               style={{
                 opacity,
                 color: word === "India" ? "transparent" : color,
-                backgroundImage: word === "India" ? "linear-gradient(to bottom, #f97316 40%,#ffffff 55%, #22c55e 60%)" : "none",
+                backgroundImage: word === "India" ? "linear-gradient(to right, #f97316,#22c55e)" : "none",
                 WebkitBackgroundClip: word === "India" ? "text" : "none",
                 transition: "all 300ms ease-in-out",
                 fontWeight: word === "India" ? "bold" : "bold",
