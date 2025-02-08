@@ -60,7 +60,7 @@ export default function Hero() {
 
         ctx.beginPath();
         ctx.arc(dot.x, dot.y, size, 0, Math.PI * 2);
-        ctx.fillStyle = '#00000056';
+        ctx.fillStyle = '#a855f750';
         ctx.fill();
       });
 
