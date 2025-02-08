@@ -1,6 +1,6 @@
 "use client"
-import { useEffect, useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
+import { useRef } from 'react';
 
 export default function FadingText() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -11,7 +11,7 @@ export default function FadingText() {
   });
 
   // Split text into words and add proper spacing
-  const text = "Hi I'm Madhur, your Full stack developer from BHARAT .";
+  const text = "Hi I'm Madhur, your Full stack developer from India .";
   const words = text.split(" ");
   
   // Calculate progress steps for each word
@@ -22,9 +22,8 @@ export default function FadingText() {
       ref={containerRef}
       className="min-h-screen flex items-center justify-center px-4 py-20"
     >
-      <p className="text-4xl md:text-6xl lg:text-7xl max-w-5xl font-normal leading-relaxed tracking-tight">
+      <p className="text-4xl md:text-6xl font-bold lg:text-7xl max-w-5xl leading-relaxed tracking-tight">
         {words.map((word, index) => {
-          console.log("word", word);
           // Calculate opacity transition points for each word
           const start = index * progressPerWord;
           const end = start + progressPerWord;
@@ -46,11 +45,11 @@ export default function FadingText() {
               key={index}
               style={{
                 opacity,
-                color: word === "BHARAT" ? "transparent" : color,
-                backgroundImage: word === "BHARAT" ? "linear-gradient(to bottom, #f97316,rgb(234, 234, 234), #22c55e)" : "none",
-                WebkitBackgroundClip: word === "BHARAT" ? "text" : "none",
+                color: word === "India" ? "transparent" : color,
+                backgroundImage: word === "India" ? "linear-gradient(to bottom, #f97316 40%,#ffffff 55%, #22c55e 60%)" : "none",
+                WebkitBackgroundClip: word === "India" ? "text" : "none",
                 transition: "all 300ms ease-in-out",
-                fontWeight: word === "BHARAT" ? "bold" : "normal",
+                fontWeight: word === "India" ? "bold" : "bold",
                 
               }}
               

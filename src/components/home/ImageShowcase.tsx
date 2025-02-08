@@ -18,7 +18,10 @@ export default function ImageShowcase() {
 
       {/* Center Logo */}
       <div className="absolute top-[21%] left-1/2 transform -translate-x-1/2">
-        <h1 className='hover:underline text-4xl md:text-6xl lg:text-7xl max-w-5xl font-normal leading-relaxed tracking-tight'>Certifications</h1>
+        <span className="relative group text-white text-4xl md:text-6xl lg:text-7xl max-w-5xl font-normal leading-relaxed tracking-tight">
+          Certifications
+          <span className="absolute -bottom-1 left-0 w-0 h-2 rounded-r-full bg-white group-hover:w-full transition-all duration-300"></span>
+        </span>
         {/* <Image
           src="/logo.png" // Add your logo here
           alt="Logo"
@@ -32,7 +35,7 @@ export default function ImageShowcase() {
       <div className="absolute bottom-40 w-full p-8">
         <div className="grid grid-cols-2 gap-8 h-[100vh] max-h-[800px]">
           {/* Left Image */}
-          <motion.div 
+          <motion.div
             className="relative h-full bg-black hover:scale-105 transition-all duration-300"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -51,7 +54,7 @@ export default function ImageShowcase() {
           </motion.div>
 
           {/* Right Image */}
-          <motion.div 
+          <motion.div
             className="relative h-full bg-black hover:scale-105 transition-all duration-300"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
