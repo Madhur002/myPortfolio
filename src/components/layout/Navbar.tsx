@@ -38,7 +38,7 @@ export default function Navbar() {
       window.removeEventListener('scroll', checkSectionInView);
     };
   }, []);
-
+  console.log("activeSection",activeSection);
   const getNavbarStyle = () => {
     switch (activeSection) {
       case 'fadingText':

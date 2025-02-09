@@ -76,3 +76,34 @@ a, button, [role="button"] {
   -ms-overflow-style: none;  /* IE and Edge */
   scrollbar-width: none;  /* Firefox */
 }
+
+.sticky-sections {
+  position: relative;
+}
+
+.sticky-sections section {
+  height: 100vh;
+  width: 100%;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+.parallax-sections {
+  position: relative;
+  z-index: 2;
+  background-color: var(--background);
+  margin-top: 50vh; /* Adjust this to control when parallax starts */
+}
+
+/* Add a semi-transparent overlay effect when content scrolls over */
+.parallax-sections::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 100px;
+  background: linear-gradient(to bottom, var(--background) 0%, transparent 100%);
+  pointer-events: none;
+}
