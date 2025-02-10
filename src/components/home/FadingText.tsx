@@ -11,12 +11,12 @@ const FadingText = () => {
   });
 
   // Split text into words and add proper spacing
-  const text = "Hi I'm Madhur, your Full stack developer from India";
+  const text = "Hi I'm Madhur, your Full stack developer from India .";
   const words = text.split(" ");
   
   // Calculate progress steps for each word
   const progressPerWord = 1 / words.length;
-
+  console.log("scrollYProgress", scrollYProgress, progressPerWord)
   return (
     <div className="relative h-screen flex items-center justify-center">
       <div 
@@ -29,32 +29,37 @@ const FadingText = () => {
             const start = index * progressPerWord;
             const end = start + progressPerWord;
 
-            const opacity = useTransform(
-              scrollYProgress,
-              [start, end],
-              [0.3, 1] // Reversed opacity (dark to bright)
-            );
-
             const color = useTransform(
               scrollYProgress,
               [start, end],
-              ["rgb(75, 85, 99)", "rgb(0, 0, 0)"] // Reversed color (dark to white)
+              ["rgb(0 0 0)", "rgb(216 180 254)"]
+            );
+
+            // Add fontSize transform
+            const fontSize = useTransform(
+              scrollYProgress,
+              [start, end],
+              ["1em", "1.5em"] // Adjust these values to control the size range
             );
 
             return (
               <motion.span
                 key={index}
                 style={{
-                  opacity,
-                  color: word === "India" ? "transparent" : color,
-                  backgroundImage: word === "India" ? "linear-gradient(to right, #f97316,#22c55e)" : "none",
-                  WebkitBackgroundClip: word === "India" ? "text" : "none",
-                  transition: "all 300ms ease-in-out",
-                  fontWeight: word === "India" ? "bold" : "bold",
-                  
+                  color,
+                  fontSize,
                 }}
-                
-                className={`inline-block mr-[0.2em]`}
+                className={`[-webkit-text-stroke:_2px_#000000] inline-block mr-[0.2em] ${
+                  word === "India" && "hover:scale-110 transition-all duration-300"
+                } ${word === "Hi" && "hover:scale-110 transition-all duration-300"} ${
+                  word === "I'm" && "hover:scale-110 transition-all duration-300"
+                } ${word === "Full" && "hover:scale-110 transition-all duration-300"} ${
+                  word === "stack" && "hover:scale-110 transition-all duration-300"
+                } ${word === "developer" && "hover:scale-110 transition-all duration-300"} ${
+                  word === "Madhur," && "hover:scale-110 transition-all duration-300"
+                } ${word === "your" && "hover:scale-110 transition-all duration-300"} ${
+                  word === "from" && "hover:scale-110 transition-all duration-300"
+                }`}
               >
                 {word}
               </motion.span>

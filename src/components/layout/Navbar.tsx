@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { useState, useRef, useEffect } from 'react';
 import { HomeIcon, UserIcon, BriefcaseIcon, CodeBracketIcon, CpuChipIcon, AcademicCapIcon, EnvelopeIcon } from '@heroicons/react/24/outline';
 import {HeartIcon} from '@heroicons/react/24/solid';
-
+import { PiFireDuotone } from "react-icons/pi";
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('hero');
@@ -14,12 +14,12 @@ export default function Navbar() {
     const sections = document.querySelectorAll('section[id]');
     const navHeight = navRef.current?.offsetHeight || 0;
     
-    // Function to check which section is at navbar position
+    // Updated function to check which section is at navbar position
     const checkSectionInView = () => {
-      const scrollPosition = window.scrollY + navHeight + 20; // Adding some offset
+      const scrollPosition = window.scrollY + (navHeight / 2); // Changed to half navbar height for better transition
 
       sections.forEach((section: any) => {
-        const sectionTop = section.offsetTop;
+        const sectionTop = section.offsetTop - navHeight;
         const sectionHeight = section.offsetHeight;
         
         if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
@@ -31,26 +31,28 @@ export default function Navbar() {
     // Initial check
     checkSectionInView();
 
-    // Add scroll event listener
-    window.addEventListener('scroll', checkSectionInView);
+    // Add scroll event listener with throttling for better performance
+    let ticking = false;
+    const onScroll = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          checkSectionInView();
+          ticking = false;
+        });
+        ticking = true;
+      }
+    };
+
+    window.addEventListener('scroll', onScroll);
 
     return () => {
-      window.removeEventListener('scroll', checkSectionInView);
+      window.removeEventListener('scroll', onScroll);
     };
   }, []);
-  console.log("activeSection",activeSection);
   const getNavbarStyle = () => {
     switch (activeSection) {
       case 'fadingText':
-        return 'bg-gradient-to-r from-orange-500 to-green-500 text-white hover:shadow-2xl hover:shadow-orange-500';
-      case 'imageShowcase':
-        return 'bg-gradient-to-r from-stone-900 to-yellow-900 border-transparent text-white hover:shadow-2xl hover:shadow-yellow-900';
-      case 'technologies':
-        return 'bg-yellow-500 border-white hover:shadow-2xl hover:shadow-[#a855f7] border-2';
-      case 'about-section':
-        return 'bg-green-500 border-white text-white hover:shadow-2xl hover:shadow-[#a855f7] border-2';
-      case 'services':
-        return 'bg-blue-500 border-white text-white hover:shadow-2xl hover:shadow-[#a855f7] border-2';
+        return 'bg-white border-[#a855f7] hover:shadow-2xl hover:shadow-[#a855f7] border-2';
       default:
         return 'bg-white border-[#a855f7] hover:shadow-2xl hover:shadow-[#a855f7] border-2';
     }
@@ -71,9 +73,9 @@ export default function Navbar() {
 
   return (
     <div ref={navRef} className="flex flex-col items-center fixed w-full top-5 z-[9999]">
-      <nav className={`${getNavbarStyle()} transition-all duration-300 rounded-full px-6 flex items-center justify-between w-[400px]`}>
+      <nav className={`${getNavbarStyle()} transition-all duration-300 h-12 rounded-full px-6 flex items-center justify-between w-[400px]`}>
         <Link href="/" className={`text-xl font-bold flex items-center py-3 ${activeSection === 'hero' ? 'text-[#a855f7]' : ''}`}>
-          <HeartIcon className="w-6 h-6 hover:scale-110 transition-all duration-300" />
+          <PiFireDuotone className="w-6 h-6 text-[#a855f7] hover:scale-110 transition-all duration-300" />
           <span className="text-2xl"></span>
         </Link>
 
@@ -85,8 +87,8 @@ export default function Navbar() {
           <span className="sr-only">Open menu</span>
           <div className="w-6 h-6 flex items-center justify-center">
             <div className="w-5 h-2 flex flex-col justify-between">
-              <div className={`w-full h-0.5 ${activeSection === 'hero' ? 'bg-[#a855f7]' : 'bg-current'} transition-all ${isOpen ? 'rotate-45 translate-y-1' : ''}`}></div>
-              <div className={`w-full h-0.5 ${activeSection === 'hero' ? 'bg-[#a855f7]' : 'bg-current'} transition-all ${isOpen ? '-rotate-45 -translate-y-0.5' : ''}`}></div>
+              <div className={`text-[#a855f7] w-full h-0.5 ${activeSection === 'hero' ? 'bg-[#a855f7]' : 'bg-current'} transition-all ${isOpen ? 'rotate-45 translate-y-1' : ''}`}></div>
+              <div className={`text-[#a855f7] w-full h-0.5 ${activeSection === 'hero' ? 'bg-[#a855f7]' : 'bg-current'} transition-all ${isOpen ? '-rotate-45 -translate-y-0.5' : ''}`}></div>
             </div>
           </div>
         </button>

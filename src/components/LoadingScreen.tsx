@@ -1,6 +1,6 @@
 'use client';
 
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, progress } from 'framer-motion';
 import { useState, useEffect } from 'react';
 import { FaAws, FaCode, FaCss3, FaGithub, FaHtml5, FaJsSquare, FaNodeJs, FaReact } from 'react-icons/fa';
 import { RiNextjsFill } from "react-icons/ri";
@@ -18,7 +18,7 @@ type Block = {
 };
 
 // Modified BlockGrid component
-const BlockGrid = ({ isExiting }: { isExiting: boolean }) => {
+const BlockGrid = ({ isExiting, progress }: { isExiting: boolean, progress: number }) => {
   const rows = 15;
   const cols = 20;
   
@@ -56,7 +56,7 @@ const BlockGrid = ({ isExiting }: { isExiting: boolean }) => {
       {blocks.map(block => (
         <motion.div
           key={block.id}
-          className="bg-[#a855f7]"
+          className={`bg-white ${progress >=  100 && "shadow-2xl shadow-purple-300"}`}
           initial={{ opacity: 1, scale: 1, rotateX: 0, rotateY: 0, x: 0, y: 0 }}
           animate={isExiting ? {
             opacity: [1, 1, 0],
@@ -92,7 +92,7 @@ const LoadingScreen = ({ progress, isExiting }: { progress: number, isExiting: b
         }
       }}
     >
-      <BlockGrid isExiting={isExiting} />
+      <BlockGrid isExiting={isExiting} progress={progress} />
       
       {/* Only show progress icons when not exiting */}
       {!isExiting && (
@@ -105,7 +105,7 @@ const LoadingScreen = ({ progress, isExiting }: { progress: number, isExiting: b
             transition={{ duration: 0.5 }}
           >
             <div className="relative z-10 flex items-center justify-center">
-              <span className="text-4xl md:text-6xl text-white font-bold text-nowrap rounded-full h-30 w-30 md:h-32 md:w-32 flex items-center justify-center">
+              <span className="text-4xl md:text-6xl text-[#a855f7] font-bold text-nowrap rounded-full h-30 w-30 md:h-32 md:w-32 flex items-center justify-center">
                 {progress >= 0 && progress < 10 && <FaHtml5 className='text-7xl' />} 
                 {progress >= 10 && progress < 20 && <FaCss3 className='text-7xl' />} 
                 {progress >= 20 && progress < 30 && <FaJsSquare className='text-7xl' />} 
@@ -147,7 +147,7 @@ const WrappedLoadingScreen = () => {
           setIsExiting(true);
           // Increased delay to match explosion animation duration
           setTimeout(() => setLoading(false), 2500);
-        }, 500);
+        }, 100);
       }
       setProgress(Math.min(Math.round(currentProgress), 100));
     }, interval);

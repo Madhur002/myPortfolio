@@ -60,7 +60,7 @@ export default function Hero() {
 
         ctx.beginPath();
         ctx.arc(dot.x, dot.y, size, 0, Math.PI * 2);
-        ctx.fillStyle = '#a855f750';
+        ctx.fillStyle = '#a855f780';
         ctx.fill();
       });
 
@@ -119,11 +119,11 @@ export default function Hero() {
       >
         <motion.a
           href="#contact"
-          className="group relative inline-flex items-center gap-2 overflow-hidden rounded-full bg-black px-8 py-3 transition-all duration-300 hover:bg-gradient-to-r hover:from-purple-400 hover:to-violet-700"
+          className="group relative inline-flex items-center gap-2 overflow-hidden rounded-full bg-gradient-to-r from-purple-400 to-violet-700 px-8 py-3 transition-all duration-300 hover:bg-gradient-to-r hover:from-purple-400 hover:to-violet-700"
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
         >
-          <span className="relative flex items-center gap-2 text-white">
+          <span className="relative text-lg flex items-center gap-2 text-white">
             Get in Touch
             <motion.span
               initial={{ x: -4, opacity: 0 }}
@@ -146,7 +146,7 @@ export default function Hero() {
 
   return (
     <section id="hero" className="min-h-screen flex items-center relative overflow-hidden">
-      <div className="container relative overflow-hidden rounded-3xl mx-auto p-10 bg-white border-2 transition-all duration-300 border-purple-500 z-50">
+      <div className="container relative overflow-hidden rounded-[40px] mx-auto p-10 bg-white border-2 transition-all duration-300 border-purple-500 z-50">
         {/* <Image src="/chakras/sahasrara.png" className='absolute top-[-50px] right-[-200px]' alt="sahasrara" width={500} height={500} /> */}
 
         <div className="flex flex-col md:flex-row items-center justify-between">
@@ -158,12 +158,12 @@ export default function Hero() {
             transition={{ duration: 0.6 }}
           >
             <div className="space-y-6">
-              <h1 className="text-6xl md:text-7xl lg:text-8xl font-normal">
+              <h1 className=" text-purple-300 [-webkit-text-stroke:_2px_black] text-6xl md:text-7xl lg:text-8xl font-semibold">
                 Full Stack
                 <br />
-                <span className="text-purple-500">Developer</span>
+                <span className="text-purple-300 [-webkit-text-stroke:_2px_black]">Developer</span>
               </h1>
-              <p className="text-xl text-gray-600 dark:text-gray-400 max-w-xl">
+              <p className="text-2xl text-purple-700 max-w-xl font-normal ml-2">
                 A software developer specialized in building modern web applications and systems from 0 → 1
               </p>
               <div className="flex items-center gap-4 pt-4">
@@ -176,7 +176,7 @@ export default function Hero() {
           <div
             className="md:w-1/2 md:mt-0 flex justify-center items-start gap-8"
           >
-            <div className="relative overflow-hidden w-[500px] border-4 border-purple-500 bg-gradient-to-r from-violet-500 to-purple-500 rounded-full h-[300px]">
+            <div className="relative overflow-hidden w-[500px] border-2 border-black bg-gradient-to-r from-violet-500 to-purple-500 rounded-full h-[300px]">
               <Image
                 src="/profile.png"
                 alt="profile"
@@ -191,7 +191,7 @@ export default function Hero() {
               {/* <Image src="/chakras/sahasrara.png" className='absolute invert top-[-120px] right-[-287px]' alt="sahasrara" width={500} height={500} /> */}
             </div>
             <div className="relative w-10 h-10 rounded-full">
-              <div className="absolute w-full h-full rounded-full bg-purple-500"></div>
+              <div className="absolute w-full h-full rounded-full border-2 border-black  bg-purple-500"></div>
             </div>
           </div>
         </div>

@@ -1,12 +1,24 @@
 "use client"
 import Image from 'next/image';
-import { motion } from 'framer-motion';
+import { motion, useScroll, useTransform } from 'framer-motion';
 
 export default function ImageShowcase() {
+  // Add scroll progress tracking
+  const { scrollYProgress } = useScroll({
+    offset: ["start center", "end center"]
+  });
+
+  // Transform scroll progress to scale values
+  const backgroundScale = useTransform(scrollYProgress, [0, 0.5], [1, 2.3]);
+  const textScale = useTransform(scrollYProgress, [0, 0.5], [0.5, 2.0]); // Adjust these values as needed
+
   return (
-    <section className="relative min-h-[200vh] w-full overflow-hidden">
-      {/* Main Background Image */}
-      <div className="absolute inset-0 w-full h-full">
+    <section className="relative min-h-[150vh] w-full overflow-hidden">
+      {/* Main Background Image - Convert to motion.div */}
+      <motion.div 
+        className="absolute inset-0 w-full h-full"
+        style={{ scale: backgroundScale }}
+      >
         <Image
           src="/White Sports Car.jpg"
           alt="Car on mountain at sunset"
@@ -14,13 +26,15 @@ export default function ImageShowcase() {
           className="object-cover brightness-90"
           priority
         />
-      </div>
+      </motion.div>
 
       {/* Center Logo */}
-      <div className="absolute top-[21%] left-1/2 transform -translate-x-1/2">
-        <span className="relative group text-white text-4xl md:text-6xl lg:text-7xl max-w-5xl font-normal leading-relaxed tracking-tight">
+      <motion.div 
+        className="absolute top-[7%] text-center w-full transform -translate-x-1/2"
+        style={{ scale: textScale }}
+      >
+        <span className="relative text-white/60 text-center w-full text-4xl md:text-6xl lg:text-[7rem] max-w-5xl font-bold leading-relaxed tracking-tight">
           Certifications
-          <span className="absolute -bottom-1 left-0 w-0 h-2 rounded-r-full bg-white group-hover:w-full transition-all duration-300"></span>
         </span>
         {/* <Image
           src="/logo.png" // Add your logo here
@@ -29,10 +43,10 @@ export default function ImageShowcase() {
           height={40}
           className="opacity-90"
         /> */}
-      </div>
+      </motion.div>
 
       {/* Bottom Image Grid */}
-      <div className="absolute bottom-40 w-full p-8">
+      <div className="hidden absolute top-[20%] w-full p-8">
         <div className="grid grid-cols-2 gap-8 h-[100vh] max-h-[800px]">
           {/* Left Image */}
           <motion.div

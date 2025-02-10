@@ -23,7 +23,7 @@ export default function Layout({ children }: LayoutProps) {
       >
         {children}
       </motion.main>
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 } 
