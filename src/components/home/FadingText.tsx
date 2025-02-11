@@ -7,7 +7,7 @@ const FadingText = () => {
   
   const { scrollYProgress } = useScroll({
     target: containerRef,
-    offset: ["start center", "center center"]
+    offset: ["start center", "end end"]
   });
 
   // Split text into words and add proper spacing
@@ -16,7 +16,6 @@ const FadingText = () => {
   
   // Calculate progress steps for each word
   const progressPerWord = 1 / words.length;
-  console.log("scrollYProgress", scrollYProgress, progressPerWord)
   return (
     <div className="relative h-screen flex items-center justify-center">
       <div 

@@ -1,39 +1,44 @@
 "use client"
+import { useRef } from 'react';
 import Image from 'next/image';
 import { motion, useScroll, useTransform } from 'framer-motion';
 
 export default function ImageShowcase() {
-  // Add scroll progress tracking
+  // Create the ref first
+  const sectionRef = useRef(null);
+
+  // Use the ref in useScroll
   const { scrollYProgress } = useScroll({
-    offset: ["start center", "end center"]
+    offset: ["start end", "end start"],
+    target: sectionRef
   });
 
-  // Transform scroll progress to scale values
-  const backgroundScale = useTransform(scrollYProgress, [0, 0.5], [1, 2.3]);
-  const textScale = useTransform(scrollYProgress, [0, 0.5], [0.5, 2.0]); // Adjust these values as needed
+  // Adjust the transform values for more noticeable scaling
+  const backgroundScale = useTransform(scrollYProgress, [0, 1], [1, 1.7]);
+  const textScale = useTransform(scrollYProgress, [0, 0.5], [1.5, 0.9]); // Adjust these values as needed
 
   return (
-    <section className="relative min-h-[150vh] w-full overflow-hidden">
+    <section ref={sectionRef} className="relative min-h-[200vh] w-full overflow-hidden">
       {/* Main Background Image - Convert to motion.div */}
       <motion.div 
         className="absolute inset-0 w-full h-full"
         style={{ scale: backgroundScale }}
       >
         <Image
-          src="/White Sports Car.jpg"
+          src="/wallpaper/wall8.jpg"
           alt="Car on mountain at sunset"
           fill
-          className="object-cover brightness-90"
+          className="object-cover object-center brightness-90"
           priority
         />
       </motion.div>
 
       {/* Center Logo */}
       <motion.div 
-        className="absolute top-[7%] text-center w-full transform -translate-x-1/2"
+        className="absolute top-[3%] text-center w-full transform -translate-x-1/2"
         style={{ scale: textScale }}
       >
-        <span className="relative text-white/60 text-center w-full text-4xl md:text-6xl lg:text-[7rem] max-w-5xl font-bold leading-relaxed tracking-tight">
+       <span className="relative text-white text-center w-full text-4xl md:text-6xl lg:text-[14rem] max-w-5xl font-bold leading-relaxed tracking-tighter">
           Certifications
         </span>
         {/* <Image

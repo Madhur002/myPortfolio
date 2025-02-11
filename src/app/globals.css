@@ -82,28 +82,38 @@ a, button, [role="button"] {
 }
 
 .sticky-sections section {
-  height: 100vh;
+  height: 200vh;
   width: 100%;
   position: sticky;
-  top: 0;
+  top: 0px;
   z-index: 1;
 }
 
-.parallax-sections {
+/* .parallax-sections {
   position: relative;
   z-index: 2;
-  background-color: var(--background);
+  background-color: orange !important;
   margin-top: 50vh; /* Adjust this to control when parallax starts */
-}
+/* }  */
+*/
 
 /* Add a semi-transparent overlay effect when content scrolls over */
-.parallax-sections::before {
+/* .parallax-sections::before {
   content: '';
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   height: 100px;
-  background: linear-gradient(to bottom, var(--background) 0%, transparent 100%);
+  background: pink !important;
   pointer-events: none;
+} */
+
+/* Add this to your existing styles */
+nav {
+  transition: all 0.3s ease-in-out;
+}
+
+.nav-link, .nav-icon {
+  transition: color 0.3s ease-in-out;
 }

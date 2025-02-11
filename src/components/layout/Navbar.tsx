@@ -1,62 +1,92 @@
 "use client"
+import { AcademicCapIcon, BriefcaseIcon, CodeBracketIcon, CpuChipIcon, EnvelopeIcon, HomeIcon, UserIcon } from '@heroicons/react/24/outline';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
-import { useState, useRef, useEffect } from 'react';
-import { HomeIcon, UserIcon, BriefcaseIcon, CodeBracketIcon, CpuChipIcon, AcademicCapIcon, EnvelopeIcon } from '@heroicons/react/24/outline';
-import {HeartIcon} from '@heroicons/react/24/solid';
-import { PiFireDuotone } from "react-icons/pi";
-import FireAnimation from '../effects/FireAnimation';
-import { useFireAnimation } from '../effects/FireAnimation';
+import { useEffect, useRef, useState } from 'react';
+import { FaHeart } from 'react-icons/fa';
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('hero');
   const navRef = useRef<HTMLDivElement>(null);
-  const { isFireActive, toggleFire } = useFireAnimation();
 
   useEffect(() => {
-    const sections = document.querySelectorAll('section[id]');
-    const navHeight = navRef.current?.offsetHeight || 0;
-    
-    // Updated function to check which section is at navbar position
-    const checkSectionInView = () => {
-      const scrollPosition = window.scrollY + (navHeight / 2); // Changed to half navbar height for better transition
+    const sections = document.querySelectorAll("section");
+    const options = { threshold: 0.5 }; // Adjust this value if needed
 
-      sections.forEach((section: any) => {
-        const sectionTop = section.offsetTop - navHeight;
-        const sectionHeight = section.offsetHeight;
-        
-        if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
-          setActiveSection(section.id);
+    const observer = new IntersectionObserver((entries) => {
+      console.log("entries",entries);
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          // Set navbar background color based on the section's ID
+          switch (entry.target.id) {
+            case "hero":
+              setActiveSection("hero"); // Default color
+              break;
+            case "fadingText":
+              setActiveSection("fadingText");
+              break;
+            case "imageShowcase":
+              setActiveSection("imageShowcase");
+              break;
+            default:
+              setActiveSection("hero");
+          }
         }
       });
-    };
+    }, options);
 
-    // Initial check
-    checkSectionInView();
+    sections.forEach((section) => observer.observe(section));
 
-    // Add scroll event listener with throttling for better performance
-    let ticking = false;
-    const onScroll = () => {
-      if (!ticking) {
-        window.requestAnimationFrame(() => {
-          checkSectionInView();
-          ticking = false;
-        });
-        ticking = true;
-      }
-    };
-
-    window.addEventListener('scroll', onScroll);
-
-    return () => {
-      window.removeEventListener('scroll', onScroll);
-    };
+    return () => observer.disconnect(); // Cleanup observer on unmount
   }, []);
+
+  // useEffect(() => {
+  //   const sections = document.querySelectorAll('section[id]');
+  //   const navHeight = navRef.current?.offsetHeight || 0;
+    
+  //   const checkSectionInView = () => {
+  //     console.log("window.scrollY",window.scrollY);
+  //     const scrollPosition = window.scrollY + navHeight + 20;
+
+  //     sections.forEach((section: any) => {
+  //       const sectionTop = section.offsetTop;
+  //       const sectionHeight = section.offsetHeight;
+        
+  //       if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+  //         setActiveSection(section.id);
+  //       }
+  //     });
+  //   };
+
+  //   checkSectionInView();
+
+  //   let ticking = false;
+  //   const onScroll = () => {
+  //     if (!ticking) {
+  //       window.requestAnimationFrame(() => {
+  //         checkSectionInView();
+  //         ticking = false;
+  //       });
+  //       ticking = true;
+  //     }
+  //   };
+
+  //   window.addEventListener('scroll', onScroll);
+
+  //   return () => {
+  //     window.removeEventListener('scroll', onScroll);
+  //   };
+  // }, []);
+
   const getNavbarStyle = () => {
     switch (activeSection) {
-      case 'fadingText':
+      case 'hero':
         return 'bg-white border-[#a855f7] hover:shadow-2xl hover:shadow-[#a855f7] border-2';
+      case 'fadingText':
+        return 'bg-red-500 border-red-700 hover:shadow-2xl hover:shadow-red-700 border-2';
+      case 'imageShowcase':
+        return 'bg-green-500 border-green-700 hover:shadow-2xl hover:shadow-green-700 border-2';
       default:
         return 'bg-white border-[#a855f7] hover:shadow-2xl hover:shadow-[#a855f7] border-2';
     }
@@ -77,36 +107,43 @@ export default function Navbar() {
 
   return (
     <>
-      <FireAnimation />
       <div ref={navRef} className="flex flex-col items-center fixed w-full top-5 z-[9999]">
         <nav className={`${getNavbarStyle()} transition-all duration-300 h-12 rounded-full px-6 flex items-center justify-between w-[400px]`}>
-          <Link href="/" className={`text-xl font-bold flex items-center py-3 ${activeSection === 'hero' ? 'text-[#a855f7]' : ''}`}>
-            <PiFireDuotone 
-              className={`w-6 h-6 text-[#a855f7] hover:scale-110 transition-all duration-300 cursor-pointer ${isFireActive ? 'text-orange-500 animate-pulse' : ''}`}
-              onClick={(e) => {
-                e.preventDefault();
-                toggleFire();
-              }}
+          <Link href="/" className={`text-xl font-bold flex items-center py-3 ${
+            activeSection === 'hero' ? 'text-[#a855f7]' : 
+            activeSection === 'fadingText' ? 'text-red-700' :
+            activeSection === 'imageShowcase' ? 'text-green-700' : 'text-[#a855f7]'
+          }`}>
+            <FaHeart 
+              className={`w-6 h-6 ${
+                activeSection === 'hero' ? 'text-[#a855f7]' : 
+                activeSection === 'fadingText' ? 'text-red-700' :
+                activeSection === 'imageShowcase' ? 'text-green-700' : 'text-[#a855f7]'
+              } hover:scale-110 transition-all duration-300 cursor-pointer`}
             />
             <span className="text-2xl"></span>
           </Link>
 
-          {/* Menu Button */}
           <button
             className="w-8 h-8 ml-6 flex items-center justify-center"
             onClick={() => setIsOpen(!isOpen)}
           >
             <span className="sr-only">Open menu</span>
             <div className="w-6 h-6 flex items-center justify-center">
-              <div className="w-5 h-2 flex flex-col justify-between">
-                <div className={`text-[#a855f7] w-full h-0.5 ${activeSection === 'hero' ? 'bg-[#a855f7]' : 'bg-current'} transition-all ${isOpen ? 'rotate-45 translate-y-1' : ''}`}></div>
-                <div className={`text-[#a855f7] w-full h-0.5 ${activeSection === 'hero' ? 'bg-[#a855f7]' : 'bg-current'} transition-all ${isOpen ? '-rotate-45 -translate-y-0.5' : ''}`}></div>
-              </div>
+              <div className={`text-current w-full h-0.5 ${
+                activeSection === 'hero' ? 'bg-[#a855f7]' : 
+                activeSection === 'fadingText' ? 'bg-red-700' :
+                activeSection === 'imageShowcase' ? 'bg-green-700' : 'bg-[#a855f7]'
+              } transition-all ${isOpen ? 'rotate-45 translate-y-1' : ''}`}></div>
+              <div className={`text-current w-full h-0.5 ${
+                activeSection === 'hero' ? 'bg-[#a855f7]' : 
+                activeSection === 'fadingText' ? 'bg-red-700' :
+                activeSection === 'imageShowcase' ? 'bg-green-700' : 'bg-[#a855f7]'
+              } transition-all ${isOpen ? '-rotate-45 -translate-y-0.5' : ''}`}></div>
             </div>
           </button>
         </nav>
 
-        {/* Dropdown Menu */}
         {isOpen && (
           <motion.div
             initial={{ opacity: 0, y: 10 }}

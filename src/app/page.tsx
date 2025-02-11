@@ -32,26 +32,23 @@ export default function Home() {
   return (
     <main className="relative">
       <Layout>
-        <section id="hero" className="min-h-screen">
+        <section id="hero" className="h-screen">
           <Hero />
         </section>
         <div className="sticky-sections">
-          <section id="fadingText" className="min-h-screen">
+          <section id="fadingText" className="h-screen">
             <FadingText />
           </section>
-          <section id="imageShowcase" className="min-h-screen parallax-sections">
+          <section id="imageShowcase" className="h-screen">
             <ImageShowcase />
           </section>
         </div>
-        {/* <section id="about" className="min-h-screen mt-[50vh]">
-          <About />
-        </section>
-        <section id="services" className="min-h-screen">
+        {/* <section className="bg-[#01010d] min-h-screen backdrop-blur-xl bg-cover bg-center">
+          <Services />
+        </section> */}
+        <section className="bg-[url('/wallpaper/wall8.jpg')] min-h-screen backdrop-blur-xl bg-cover bg-center">
           <Services />
         </section>
-        <section id="technologies" className="min-h-screen">
-          <Technologies />
-        </section> */}
       </Layout>
     </main>
   );
