@@ -15,13 +15,53 @@ export default function ImageShowcase() {
   const backgroundScale = useTransform(scrollYProgress, [0, 1], [1, 1.7]);
   const textScale = useTransform(scrollYProgress, [0, 0.5], [1.5, 0.9]);
   
-  // Certificate animations
-  const certificateScale = useTransform(scrollYProgress, [0.1, 0.3, 0.5], [0.6, 0.8, 1]);
-  const certificateY = useTransform(scrollYProgress, [0.1, 0.3, 0.5], ["100vh", "50vh", "0vh"]);
-  const certificateRotateX = useTransform(scrollYProgress, [0.1, 0.3], [30, 0]);
-  const certificateRotateY = useTransform(scrollYProgress, [0.1, 0.3], [-20, 0]);
-  const certificateZ = useTransform(scrollYProgress, [0.1, 0.3, 0.5], [-300, -150, 0]);
-  const certificateOpacity = useTransform(scrollYProgress, [0.1, 0.2, 0.3], [0, 0.5, 1]);
+  // Certificate animations with four stages:
+  // 1. Start from behind plant (0.1-0.3)
+  // 2. Rise up through plant (0.3-0.5)
+  // 3. Come forward (0.5-0.7)
+  // 4. Settle down in front (0.7-0.9)
+  const certificateScale = useTransform(
+    scrollYProgress, 
+    [0.1, 0.3, 0.5, 0.7, 0.9], 
+    [0.6, 0.8, 1.2, 1.4, 1.4]
+  );
+  
+  const certificateY = useTransform(
+    scrollYProgress, 
+    [0.1, 0.3, 0.5, 0.7, 0.9], 
+    ["100vh", "50vh", "-20vh", "-20vh", "10vh"]
+  );
+  
+  const certificateRotateX = useTransform(
+    scrollYProgress, 
+    [0.1, 0.3, 0.5, 0.7, 0.9], 
+    [30, 15, -10, -5, 0]
+  );
+  
+  const certificateRotateY = useTransform(
+    scrollYProgress, 
+    [0.1, 0.3, 0.5, 0.7, 0.9], 
+    [-20, -10, 5, 0, 0]
+  );
+  
+  const certificateZ = useTransform(
+    scrollYProgress, 
+    [0.1, 0.3, 0.5, 0.7, 0.9], 
+    [-300, -150, 0, 200, 300]
+  );
+  
+  const certificateOpacity = useTransform(
+    scrollYProgress, 
+    [0.1, 0.2, 0.3, 0.9], 
+    [0, 0.5, 1, 1]
+  );
+
+  // Plant overlay opacity - New animation
+  const plantOverlayOpacity = useTransform(
+    scrollYProgress,
+    [1, 1],
+    [1, 1]
+  );
 
   return (
     <section ref={sectionRef} className="bg-[url('/wallpaper/wall8.jpg')] bg-cover bg-center relative min-h-[200vh] w-full overflow-hidden perspective-2000">
@@ -32,7 +72,7 @@ export default function ImageShowcase() {
       />
 
       {/* Plant Background Layer */}
-      <div className="absolute inset-0 w-full h-full bg-[url('/wallpaper/wall8Plant.png')] bg-cover bg-center z-20" />
+      <div className="absolute inset-0 w-full h-full bg-[url('/wallpaper/wall8Plant.png')] bg-cover bg-center z-50" />
       
       {/* Certificate Container */}
       <motion.div 
@@ -55,7 +95,10 @@ export default function ImageShowcase() {
       </motion.div>
 
       {/* Plant Foreground Layer */}
-      <div className="absolute inset-0 w-full h-full bg-[url('/wallpaper/wall8Plant.png')] bg-cover bg-center z-40" />
+      <motion.div 
+        className="absolute inset-0 w-full h-full bg-[url('/wallpaper/wall8Plant.png')] bg-cover bg-center z-40"
+        style={{ opacity: plantOverlayOpacity }}
+      />
       
       {/* Title */}
       <motion.div 

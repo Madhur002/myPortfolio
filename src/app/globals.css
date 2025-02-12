@@ -164,13 +164,14 @@ nav {
   position: sticky;
   top: 20%;
   transform: translate(-50%, -50%);
-  z-index: 30;
+  z-index: 45;
   width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
   transform-style: preserve-3d;
   will-change: transform;
+  pointer-events: none;
 }
 
 .certificate-box {
@@ -184,10 +185,11 @@ nav {
   backdrop-filter: blur(10px);
   transform-style: preserve-3d;
   transition: all 0.5s ease;
+  pointer-events: auto;
 }
 
 .certificate-box:hover {
-  transform: scale(1.02) translateZ(30px);
+  transform: scale(1.05) translateZ(50px);
   box-shadow: 
     0 35px 60px -15px rgba(0, 0, 0, 0.5),
     0 0 40px rgba(255, 255, 255, 0.3);
