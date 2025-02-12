@@ -89,6 +89,43 @@ a, button, [role="button"] {
   z-index: 1;
 }
 
+.sticky-sections-projects {
+  position: relative;
+}
+
+.sticky-sections-projects section {
+
+  width: 100%;
+  position: sticky;
+  top: -400px;
+  z-index: 1;
+}
+
+.sticky-sections-project-cards {
+  position: relative;
+}
+
+.sticky-sections-project-cards-1 div {
+  width: 60%;
+  top: 300px;
+
+  position: sticky;
+  z-index: 2;
+}
+.sticky-sections-project-cards-2 div {
+  width: 60%;
+  position: sticky;
+  top:  300px;
+  margin-top: 100px;
+  z-index: 2;
+}
+.sticky-sections-project-cards-3 div {
+  width: 60%;
+  position: sticky;
+  top:  300px;
+  z-index: 2;
+}
+
 /* .parallax-sections {
   position: relative;
   z-index: 2;
