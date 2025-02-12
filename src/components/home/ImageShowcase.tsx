@@ -4,87 +4,68 @@ import Image from 'next/image';
 import { motion, useScroll, useTransform } from 'framer-motion';
 
 export default function ImageShowcase() {
-  // Create the ref first
   const sectionRef = useRef(null);
 
-  // Use the ref in useScroll
   const { scrollYProgress } = useScroll({
     offset: ["start end", "end start"],
     target: sectionRef
   });
 
-  // Adjust the transform values for more noticeable scaling
+  // Background and text animations
   const backgroundScale = useTransform(scrollYProgress, [0, 1], [1, 1.7]);
-  const textScale = useTransform(scrollYProgress, [0, 0.5], [1.5, 0.9]); // Adjust these values as needed
+  const textScale = useTransform(scrollYProgress, [0, 0.5], [1.5, 0.9]);
+  
+  // Certificate animations
+  const certificateScale = useTransform(scrollYProgress, [0.1, 0.3, 0.5], [0.6, 0.8, 1]);
+  const certificateY = useTransform(scrollYProgress, [0.1, 0.3, 0.5], ["100vh", "50vh", "0vh"]);
+  const certificateRotateX = useTransform(scrollYProgress, [0.1, 0.3], [30, 0]);
+  const certificateRotateY = useTransform(scrollYProgress, [0.1, 0.3], [-20, 0]);
+  const certificateZ = useTransform(scrollYProgress, [0.1, 0.3, 0.5], [-300, -150, 0]);
+  const certificateOpacity = useTransform(scrollYProgress, [0.1, 0.2, 0.3], [0, 0.5, 1]);
 
   return (
-    <section ref={sectionRef} className="bg-[url('/wallpaper/wall8.jpg')] bg-cover bg-center relative min-h-[200vh] w-full overflow-hidden">
-      {/* Main Background Image - Convert to motion.div */}
+    <section ref={sectionRef} className="bg-[url('/wallpaper/wall8.jpg')] bg-cover bg-center relative min-h-[200vh] w-full overflow-hidden perspective-2000">
+      {/* Main Background */}
       <motion.div 
-        className="absolute  inset-0 w-full h-full"
+        className="absolute inset-0 w-full h-full"
         style={{ scale: backgroundScale }}
-      >
-      </motion.div>
-      <div className="absolute z-[40] w-full h-full bg-[url('/wallpaper/wall8Plant.png')] invert bg-cover bg-center"></div>
-      {/* Center Logo */}
+      />
+
+      {/* Plant Background Layer */}
+      <div className="absolute inset-0 w-full h-full bg-[url('/wallpaper/wall8Plant.png')] bg-cover bg-center z-20" />
+      
+      {/* Certificate Container */}
       <motion.div 
-        className="absolute top-[3%] text-center w-full transform -translate-x-1/2"
+        className="certificate-container"
+        style={{ 
+          scale: certificateScale,
+          y: certificateY,
+          rotateX: certificateRotateX,
+          rotateY: certificateRotateY,
+          z: certificateZ,
+          opacity: certificateOpacity,
+        }}
+      >
+        {/* Placeholder Certificate */}
+        <div className="certificate-box">
+          <div className="certificate-content">
+            <h2 className="certificate-title">Sample Certificate</h2>
+          </div>
+        </div>
+      </motion.div>
+
+      {/* Plant Foreground Layer */}
+      <div className="absolute inset-0 w-full h-full bg-[url('/wallpaper/wall8Plant.png')] bg-cover bg-center z-40" />
+      
+      {/* Title */}
+      <motion.div 
+        className="absolute top-[3%] text-center w-full transform -translate-x-1/2 z-50"
         style={{ scale: textScale }}
       >
-       <span className="relative text-white text-center w-full text-4xl md:text-6xl lg:text-[14rem] max-w-5xl font-bold leading-relaxed tracking-tighter">
+        <span className="relative text-white text-center w-full text-4xl md:text-6xl lg:text-[14rem] max-w-5xl font-bold leading-relaxed tracking-tighter">
           Certifications
         </span>
-        {/* <Image
-          src="/logo.png" // Add your logo here
-          alt="Logo"
-          width={120}
-          height={40}
-          className="opacity-90"
-        /> */}
       </motion.div>
-
-      {/* Bottom Image Grid */}
-      <div className="hidden absolute top-[20%] w-full p-8">
-        <div className="grid grid-cols-2 gap-8 h-[100vh] max-h-[800px]">
-          {/* Left Image */}
-          <motion.div
-            className="relative h-full bg-black hover:scale-105 transition-all duration-300"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.8 }}
-          >
-            <Image
-              src="/3D Renders Maxim Berg.jpg"
-              alt="Close-up product shot"
-              fill
-              className="object-contain"
-            />
-            {/* Logo Overlay */}
-            <div className="absolute bottom-1/2 left-4 bg-white/70 rounded-full px-4 p-2">
-              <h3 className="text-black text-sm font-light">LEFT</h3>
-            </div>
-          </motion.div>
-
-          {/* Right Image */}
-          <motion.div
-            className="relative h-full bg-black hover:scale-105 transition-all duration-300"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-          >
-            <Image
-              src="/3D Renders by Almas Salakhov.jpg"
-              alt="Vehicle with trailer"
-              fill
-              className="object-contain "
-            />
-            {/* Logo Overlay */}
-            <div className="absolute bottom-1/2 right-2 bg-white/20 rounded-full px-4 p-2">
-              <h3 className="text-white/60 text-sm font-light">RIGHT</h3>
-            </div>
-          </motion.div>
-        </div>
-      </div>
     </section>
   );
 } 

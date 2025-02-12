@@ -158,3 +158,59 @@ nav {
 .nav-icon {
   transition: color 0.3s ease-in-out;
 }
+
+/* Add these new styles */
+.certificate-container {
+  position: sticky;
+  top: 20%;
+  transform: translate(-50%, -50%);
+  z-index: 30;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+.certificate-box {
+  width: 600px;
+  height: 400px;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 15px;
+  box-shadow: 
+    0 25px 50px -12px rgba(0, 0, 0, 0.5),
+    0 0 30px rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  transform-style: preserve-3d;
+  transition: all 0.5s ease;
+}
+
+.certificate-box:hover {
+  transform: scale(1.02) translateZ(30px);
+  box-shadow: 
+    0 35px 60px -15px rgba(0, 0, 0, 0.5),
+    0 0 40px rgba(255, 255, 255, 0.3);
+}
+
+.certificate-content {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform-style: preserve-3d;
+}
+
+.certificate-title {
+  color: #000;
+  font-size: 2rem;
+  font-weight: bold;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Add or update these styles */
+.perspective-2000 {
+  perspective: 2000px;
+  transform-style: preserve-3d;
+}
