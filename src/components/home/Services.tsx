@@ -12,7 +12,7 @@ export default function Services() {
   })
 
   return (
-    <div className="bg-black/50 ">
+    <div className="bg-white">
     <main ref={container} className="main-card">
       <section className="text-center sticky-sections-projects-text flex justify-center items-center h-screen w-full">
         <motion.p
