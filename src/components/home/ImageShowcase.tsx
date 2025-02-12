@@ -120,20 +120,14 @@ export default function ImageShowcase() {
           pointerEvents: 'auto',
         }}
       >
-        <div className="certificate-box flex items-center bg-white/10 backdrop-blur-sm rounded-lg p-2 w-[80vw] max-w-3xl">
-          <button 
-            onClick={prevSlide}
-            className="p-2 hover:bg-white/20 rounded-full transition-colors z-50 cursor-pointer"
-            style={{ cursor: 'pointer' }}
-          >
-            <FiChevronsLeft className='text-white text-2xl'/>
-          </button>
+        <div className="relative certificate-box flex items-center bg-white/10 backdrop-blur-sm rounded-lg p-2 w-[80vw] max-w-3xl">
+         
 
-          <div className="flex-1 relative h-[50vh] mx-4">
+          <div className="flex-1 relative h-[50vh] mx-4  ">
             {certificates.map((cert, index) => (
               <motion.div
                 key={cert.id}
-                className="absolute inset-0"
+                className="absolute inset-0 "
                 initial={{ opacity: 0, x: 100 }}
                 animate={{ 
                   opacity: currentIndex === index ? 1 : 0,
@@ -141,12 +135,12 @@ export default function ImageShowcase() {
                 }}
                 transition={{ duration: 0.3 }}
               >
-                <div className="relative w-full h-full">
+                <div className="relative w-full h-full ">
                   <Image
                     src={cert.src}
                     alt={cert.alt}
                     fill
-                    className="object-contain rounded-lg"
+                    className="object-cover rounded-lg"
                     priority={index === currentIndex}
                   />
                 </div>
@@ -157,13 +151,7 @@ export default function ImageShowcase() {
             ))}
           </div>
 
-          <button 
-            onClick={nextSlide}
-            className="p-2 hover:bg-white/20 rounded-full transition-colors z-50 cursor-pointer"
-            style={{ cursor: 'pointer' }}
-          >
-            <FiChevronsRight className='text-white text-2xl'/>
-          </button>
+          
         </div>
       </motion.div>
 
@@ -182,6 +170,22 @@ export default function ImageShowcase() {
           Certifications
         </span>
       </motion.div>
+      <div className='fixed bottom-40 flex justify-center items-center gap-[400px] text-center h-10 w-full z-[9999999]'>
+      <button 
+            onClick={prevSlide}
+            className="p-2 hover:bg-white/20 rounded-full transition-colors cursor-pointer"
+            style={{ cursor: 'pointer' }}
+          >
+            <FiChevronsLeft className='text-white text-2xl'/>
+          </button>
+      <button 
+            onClick={nextSlide}
+            className="p-2 hover:bg-white/20 rounded-full transition-colors z-50 cursor-pointer"
+            style={{ cursor: 'pointer' }}
+          >
+            <FiChevronsRight className='text-white text-2xl'/>
+          </button>
+      </div>
     </section>
   );
 } 
