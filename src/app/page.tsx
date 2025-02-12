@@ -46,8 +46,11 @@ export default function Home() {
         {/* <section className="bg-[#01010d] min-h-screen backdrop-blur-xl bg-cover bg-center">
           <Services />
         </section> */}
-        <section className="bg-[url('/wallpaper/wall8.jpg')] min-h-screen sticky-sections-projects backdrop-blur-xl bg-cover bg-center">
+        <section className="bg-[url('/wallpaper/wall19.jpg')] bg-contain bg-center min-h-screen sticky-sections-projects backdrop-blur-xl">
           <Services />
+        </section>
+        <section className="bg-[#01010d] min-h-screen">
+
         </section>
       </Layout>
     </main>

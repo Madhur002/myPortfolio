@@ -145,8 +145,8 @@ export default function Hero() {
   );
 
   return (
-    <section id="hero" className="min-h-screen flex items-center relative overflow-hidden">
-      <div className="container relative overflow-hidden rounded-[40px] mx-auto p-10 bg-white border-2 transition-all duration-300 border-purple-500 z-50">
+    <section id="hero" className="min-h-screen bg-[#01010d] flex items-center relative overflow-hidden">
+      <div className="container relative overflow-hidden rounded-[40px] mx-auto p-10 bg-[#01010d] border-2 transition-all duration-300 border-purple-500 z-50">
         {/* <Image src="/chakras/sahasrara.png" className='absolute top-[-50px] right-[-200px]' alt="sahasrara" width={500} height={500} /> */}
 
         <div className="flex flex-col md:flex-row items-center justify-between">

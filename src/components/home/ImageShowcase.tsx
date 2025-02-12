@@ -18,21 +18,14 @@ export default function ImageShowcase() {
   const textScale = useTransform(scrollYProgress, [0, 0.5], [1.5, 0.9]); // Adjust these values as needed
 
   return (
-    <section ref={sectionRef} className="relative min-h-[200vh] w-full overflow-hidden">
+    <section ref={sectionRef} className="bg-[url('/wallpaper/wall8.jpg')] bg-cover bg-center relative min-h-[200vh] w-full overflow-hidden">
       {/* Main Background Image - Convert to motion.div */}
       <motion.div 
-        className="absolute inset-0 w-full h-full"
+        className="absolute  inset-0 w-full h-full"
         style={{ scale: backgroundScale }}
       >
-        <Image
-          src="/wallpaper/wall8.jpg"
-          alt="Car on mountain at sunset"
-          fill
-          className="object-cover object-center brightness-90"
-          priority
-        />
       </motion.div>
-
+      <div className="absolute z-[40] w-full h-full bg-[url('/wallpaper/wall8Plant.png')] invert bg-cover bg-center"></div>
       {/* Center Logo */}
       <motion.div 
         className="absolute top-[3%] text-center w-full transform -translate-x-1/2"

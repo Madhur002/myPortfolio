@@ -1,27 +1,20 @@
 "use client"
-import { motion } from 'framer-motion';
-const services = [
-  {
-    title: 'Web Development',
-    description: 'Building responsive and performant web applications using modern technologies.',
-    icon: '🌐',
-  },
-  {
-    title: 'UI/UX Design',
-    description: 'Creating intuitive and beautiful user interfaces with great user experience.',
-    icon: '🎨',
-  },
-  {
-    title: 'Mobile Development',
-    description: 'Developing cross-platform mobile applications using React Native.',
-    icon: '📱',
-  },
-];
+import { projects } from '@/utils/data';
+import { motion, useScroll, useTransform } from 'framer-motion';
+import { useRef } from 'react';
+import Card from './Card';
 
 export default function Services() {
+  const container = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: container,
+    offset: ['start start', 'end end']
+  })
+
   return (
-    <>
-      <section className="text-center flex justify-center items-center h-screen w-full">
+    <div className="bg-black/50 ">
+    <main ref={container} className="main-card">
+      <section className="text-center sticky-sections-projects-text flex justify-center items-center h-screen w-full">
         <motion.p
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 0.5 }}
@@ -32,21 +25,13 @@ export default function Services() {
           Projects
         </motion.p>
       </section>
-      <section className="text-center flex flex-col justify-center items-center h-screen w-full sticky-sections-project-cards sticky-sections-project-cards-1">
-      <div className="h-[400px] w-1/2 bg-white/20 backdrop-blur-xl rounded-3xl">
-        
-      </div>
-      </section>
-      <section className="text-center flex flex-col justify-center items-center h-screen w-full sticky-sections-project-cards sticky-sections-project-cards-2">
-      <div className="h-[400px] w-1/2 bg-white/20 backdrop-blur-xl rounded-3xl">
-
-      </div>
-      </section>
-      <section className="text-center flex flex-col justify-center items-center h-screen w-full sticky-sections-project-cards sticky-sections-project-cards-3">
-      <div className="h-[400px] w-1/2 bg-white/20 backdrop-blur-xl rounded-3xl">
-
-      </div>
-      </section>
-    </>
+      {
+        projects.map( (project, i) => {
+          const targetScale = 1 - ( (projects.length - i) * 0.09);
+          return <Card key={`p_${i}`} i={i} {...project} progress={scrollYProgress} range={[i * .25, 1]} targetScale={targetScale}/>
+        })
+      }
+    </main>
+    </div>
   );
 }

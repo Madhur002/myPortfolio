@@ -17,7 +17,7 @@ const FadingText = () => {
   // Calculate progress steps for each word
   const progressPerWord = 1 / words.length;
   return (
-    <div className="relative h-screen flex items-center justify-center">
+    <div className="relative h-screen bg-[#01010d] flex items-center justify-center">
       <div 
         ref={containerRef}
         className="min-h-screen flex items-center justify-center px-4 py-20"
