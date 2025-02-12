@@ -23,13 +23,17 @@ body {
 
 /* Add these styles to your globals.css */
 * {
-  cursor: none !important;
+  cursor: default !important;
 }
 
 /* Optional: Change cursor size on clickable elements */
 a,
 button,
 [role="button"] {
+  cursor: pointer !important;
+  &:hover {
+    cursor: pointer !important;
+  }
   &:hover~.custom-cursor {
     transform: scale(1.5);
   }
@@ -171,7 +175,7 @@ nav {
   align-items: center;
   transform-style: preserve-3d;
   will-change: transform;
-  pointer-events: none;
+  pointer-events: auto !important;
 }
 
 .certificate-box {
@@ -184,11 +188,13 @@ nav {
   backdrop-filter: blur(10px);
   transform-style: preserve-3d;
   transition: all 0.5s ease;
-  pointer-events: auto;
+  pointer-events: auto !important;
+  position: relative;
+  z-index: 50;
 }
 
 .certificate-box:hover {
-  transform: scale(1.05) translateZ(50px);
+  transform: scale(1.02);
   box-shadow: 
     0 35px 60px -15px rgba(0, 0, 0, 0.5),
     0 0 40px rgba(255, 255, 255, 0.3);
@@ -214,4 +220,22 @@ nav {
 .perspective-2000 {
   perspective: 2000px;
   transform-style: preserve-3d;
+}
+
+/* Add new styles for buttons */
+.certificate-box button {
+  cursor: pointer !important;
+  position: relative;
+  z-index: 60;
+  pointer-events: auto !important;
+}
+
+.certificate-box button:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+  cursor: pointer !important;
+}
+
+/* Optional: Add transition for smoother image changes */
+.certificate-box img {
+  transition: all 0.3s ease-in-out;
 }

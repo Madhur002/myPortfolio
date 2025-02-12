@@ -1,12 +1,35 @@
 "use client"
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import Image from 'next/image';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { ArrowLeftIcon, ArrowRightIcon } from '@heroicons/react/24/outline';
 import { FiChevronsLeft, FiChevronsRight } from 'react-icons/fi';
 
+const certificates = [
+  {
+    id: 1,
+    src: '/wallpaper/wall8.jpg',
+    alt: 'Certificate 1',
+    title: 'AWS Certification'
+  },
+  {
+    id: 2,
+    src: '/wallpaper/wall6.jpg',
+    alt: 'Certificate 2',
+    title: 'React Development'
+  },
+  {
+    id: 3,
+    src: '/wallpaper/wall7.jpg',
+    alt: 'Certificate 3',
+    title: 'MongoDB Certification'
+  },
+  // Add more certificates as needed
+];
+
 export default function ImageShowcase() {
   const sectionRef = useRef(null);
+  const [currentIndex, setCurrentIndex] = useState(0);
 
   const { scrollYProgress } = useScroll({
     offset: ["start end", "end start"],
@@ -65,6 +88,14 @@ export default function ImageShowcase() {
     [1, 1, 1, 0]
   );
 
+  const nextSlide = () => {
+    setCurrentIndex((prev) => (prev + 1) % certificates.length);
+  };
+
+  const prevSlide = () => {
+    setCurrentIndex((prev) => (prev - 1 + certificates.length) % certificates.length);
+  };
+
   return (
     <section ref={sectionRef} className="bg-[url('/wallpaper/wall8.jpg')] bg-cover bg-center relative min-h-[200vh] w-full overflow-hidden perspective-2000">
       {/* Main Background */}
@@ -78,7 +109,7 @@ export default function ImageShowcase() {
 
       {/* Certificate Container */}
       <motion.div
-        className="certificate-container z-30"
+        className="certificate-container"
         style={{
           scale: certificateScale,
           y: certificateY,
@@ -86,16 +117,53 @@ export default function ImageShowcase() {
           rotateY: certificateRotateY,
           z: certificateZ,
           opacity: certificateOpacity,
+          pointerEvents: 'auto',
         }}
       >
-        {/* Placeholder Certificate */}
-        <div className="certificate-box flex gap-2 px-1 bg-white/20 justify-between items-center">
-          <button className=""><FiChevronsLeft className='text-white'/></button>
-          <div className="certificate-content ">
-            <h2 className="certificate-title">Sample Certificate</h2>
-          </div>
-          <button className=""><FiChevronsRight className='text-lg text-white'/></button>
+        <div className="certificate-box flex items-center bg-white/10 backdrop-blur-sm rounded-lg p-2 w-[80vw] max-w-3xl">
+          <button 
+            onClick={prevSlide}
+            className="p-2 hover:bg-white/20 rounded-full transition-colors z-50 cursor-pointer"
+            style={{ cursor: 'pointer' }}
+          >
+            <FiChevronsLeft className='text-white text-2xl'/>
+          </button>
 
+          <div className="flex-1 relative h-[50vh] mx-4">
+            {certificates.map((cert, index) => (
+              <motion.div
+                key={cert.id}
+                className="absolute inset-0"
+                initial={{ opacity: 0, x: 100 }}
+                animate={{ 
+                  opacity: currentIndex === index ? 1 : 0,
+                  x: currentIndex === index ? 0 : -100
+                }}
+                transition={{ duration: 0.3 }}
+              >
+                <div className="relative w-full h-full">
+                  <Image
+                    src={cert.src}
+                    alt={cert.alt}
+                    fill
+                    className="object-contain rounded-lg"
+                    priority={index === currentIndex}
+                  />
+                </div>
+                <h3 className="text-white text-center mt-2 text-lg font-semibold">
+                  {cert.title}
+                </h3>
+              </motion.div>
+            ))}
+          </div>
+
+          <button 
+            onClick={nextSlide}
+            className="p-2 hover:bg-white/20 rounded-full transition-colors z-50 cursor-pointer"
+            style={{ cursor: 'pointer' }}
+          >
+            <FiChevronsRight className='text-white text-2xl'/>
+          </button>
         </div>
       </motion.div>
 
