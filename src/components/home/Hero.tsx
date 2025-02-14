@@ -119,7 +119,7 @@ export default function Hero() {
       >
         <motion.a
           href="#contact"
-          className="group relative inline-flex items-center gap-2 overflow-hidden rounded-full bg-gradient-to-r from-purple-400 to-violet-700 px-8 py-3 transition-all duration-300 hover:bg-gradient-to-r hover:from-purple-400 hover:to-violet-700"
+          className="group relative inline-flex items-center gap-2 overflow-hidden rounded-full bg-gradient-to-r from-purple-800 to-violet-700 px-8 py-3 transition-all duration-300 hover:bg-gradient-to-r hover:from-purple-400 hover:to-violet-700"
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
         >
@@ -146,7 +146,7 @@ export default function Hero() {
 
   return (
     <section id="hero" className="min-h-screen bg-[#01010d] flex items-center relative overflow-hidden">
-      <div className="container relative overflow-hidden rounded-[40px] mx-auto p-10 bg-[#01010d] border-2 transition-all duration-300 border-purple-500 z-50">
+      <div className="container relative overflow-hidden rounded-[40px] mx-auto p-10 bg-[#000000] border-2 transition-all duration-300 border-purple-500 z-50">
         {/* <Image src="/chakras/sahasrara.png" className='absolute top-[-50px] right-[-200px]' alt="sahasrara" width={500} height={500} /> */}
 
         <div className="flex flex-col md:flex-row items-center justify-between">
@@ -163,7 +163,7 @@ export default function Hero() {
                 <br />
                 <span className="text-purple-300 [-webkit-text-stroke:_2px_black]">Developer</span>
               </h1>
-              <p className="text-2xl text-purple-700 max-w-xl font-normal ml-2">
+              <p className="text-2xl text-purple-500 max-w-xl font-normal ml-2">
                 A software developer specialized in building modern web applications and systems from 0 → 1
               </p>
               <div className="flex items-center gap-4 pt-4">

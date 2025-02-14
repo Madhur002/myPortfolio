@@ -11,7 +11,7 @@ const FadingText = () => {
   });
 
   // Split text into words and add proper spacing
-  const text = "Hi I'm Madhur, your Full stack developer from India .";
+  const text = "Hi I'm Madhur, your Full - Stack Developer from India .";
   const words = text.split(" ");
   
   // Calculate progress steps for each word
@@ -38,23 +38,25 @@ const FadingText = () => {
             const fontSize = useTransform(
               scrollYProgress,
               [start, end],
-              ["1em", "1.5em"] // Adjust these values to control the size range
+              ["1em", "1.4em"] // Adjust these values to control the size range
             );
 
             return (
               <motion.span
+
                 key={index}
                 style={{
                   color,
                   fontSize,
                 }}
-                className={`[-webkit-text-stroke:_2px_#000000] inline-block mr-[0.2em] ${
+                data-cursor-text={word}
+                className={`hovered-mouse [-webkit-text-stroke:_2px_#000000] inline-block mr-[0.2em] ${
                   word === "India" && "hover:scale-110 transition-all duration-300"
                 } ${word === "Hi" && "hover:scale-110 transition-all duration-300"} ${
                   word === "I'm" && "hover:scale-110 transition-all duration-300"
                 } ${word === "Full" && "hover:scale-110 transition-all duration-300"} ${
-                  word === "stack" && "hover:scale-110 transition-all duration-300"
-                } ${word === "developer" && "hover:scale-110 transition-all duration-300"} ${
+                  word === "Stack" && "hover:scale-110 transition-all duration-300"
+                } ${word === "Developer" && "hover:scale-110 transition-all duration-300"} ${
                   word === "Madhur," && "hover:scale-110 transition-all duration-300"
                 } ${word === "your" && "hover:scale-110 transition-all duration-300"} ${
                   word === "from" && "hover:scale-110 transition-all duration-300"

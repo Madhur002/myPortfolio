@@ -1,8 +1,7 @@
-import type { Metadata } from "next";
 import CustomCursor from "@/components/common/CustomCursor";
 import LoadingScreen from "@/components/LoadingScreen";
+import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
-import SmoothScrolling from "./SmoothScrolling";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -33,9 +32,7 @@ export default function RootLayout({
       >
         <LoadingScreen />
         <CustomCursor />
-        <SmoothScrolling>
         {children}
-        </SmoothScrolling>
       </body>
     </html>
   );

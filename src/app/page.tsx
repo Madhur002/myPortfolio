@@ -3,6 +3,8 @@
 import Layout from '@/components/layout/Layout';
 import dynamic from 'next/dynamic';
 import { motion } from 'framer-motion';
+import { useEffect } from 'react';
+import Lenis from 'lenis'
 
 const Hero = dynamic(() => import('@/components/home/Hero'), {
   loading: () => <div>Loading...</div>,
@@ -28,7 +30,19 @@ const Services = dynamic(() => import('@/components/home/Services'), {
   loading: () => <div>Loading...</div>,
 });
 
+
 export default function Home() {
+  
+  useEffect( () => {
+    const lenis = new Lenis()
+  
+    function raf(time: any) {
+      lenis.raf(time)
+      requestAnimationFrame(raf)
+    }
+  
+    requestAnimationFrame(raf)
+  })
   return (
     <main className="relative">
       <Layout>
