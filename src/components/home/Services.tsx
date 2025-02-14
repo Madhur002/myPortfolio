@@ -12,7 +12,9 @@ export default function Services() {
   })
 
   return (
-    <div className="bg-white">
+    <div className="bg-black/50">
+            <div className='fixed top-0 bg-gradient-to-b from-black to-transparent flex justify-center items-center gap-3 text-center h-[20vh] w-full z-[999]'/>
+            <div className='fixed bottom-0 bg-gradient-to-t from-black to-transparent flex justify-center items-center gap-3 text-center h-[20vh] w-full z-[999]'/>
     <main ref={container} className="main-card">
       <section className="text-center sticky-sections-projects-text flex justify-center items-center h-screen w-full">
         <motion.p

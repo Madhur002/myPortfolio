@@ -56,7 +56,7 @@ const BlockGrid = ({ isExiting, progress }: { isExiting: boolean, progress: numb
       {blocks.map(block => (
         <motion.div
           key={block.id}
-          className={`bg-white ${progress >=  100 && "shadow-2xl shadow-purple-300"}`}
+          className={`bg-black ${progress >=  100 && "shadow-2xl shadow-purple-300"}`}
           initial={{ opacity: 1, scale: 1, rotateX: 0, rotateY: 0, x: 0, y: 0 }}
           animate={isExiting ? {
             opacity: [1, 1, 0],

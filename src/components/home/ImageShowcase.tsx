@@ -4,6 +4,7 @@ import Image from 'next/image';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { ArrowLeftIcon, ArrowRightIcon } from '@heroicons/react/24/outline';
 import { FiChevronsLeft, FiChevronsRight } from 'react-icons/fi';
+import { IoIosArrowBack } from "react-icons/io";
 
 const certificates = [
   {
@@ -21,7 +22,7 @@ const certificates = [
   {
     id: 3,
     src: '/wallpaper/wall7.jpg',
-    alt: 'Certificate 3',
+    alt: 'Certificate 4',
     title: 'MongoDB Certification'
   },
   // Add more certificates as needed
@@ -56,7 +57,7 @@ export default function ImageShowcase() {
     [0.1, 0.3, 0.5, 0.7, 0.9],
     ["-10vh", "60vh", "5vh", "100vh", "160vh"]
   );
-  console.log("certificateY", certificateY);
+
   const certificateRotateX = useTransform(
     scrollYProgress,
     [0.1, 0.3, 0.5, 0.7, 0.9],
@@ -96,6 +97,7 @@ export default function ImageShowcase() {
     setCurrentIndex((prev) => (prev - 1 + certificates.length) % certificates.length);
   };
 
+  console.log("currentIndex", currentIndex)
   return (
     <section ref={sectionRef} className="bg-[url('/wallpaper/wall8.jpg')] bg-cover bg-center relative min-h-[200vh] w-full overflow-hidden perspective-2000">
       {/* Main Background */}
@@ -120,10 +122,8 @@ export default function ImageShowcase() {
           pointerEvents: 'auto',
         }}
       >
-        <div className="relative certificate-box flex items-center bg-white/10 backdrop-blur-sm rounded-lg p-2 w-[80vw] max-w-3xl">
-         
-
-          <div className="flex-1 relative h-[50vh] mx-4  ">
+        <div className="relative certificate-box overflow-hidden flex items-center bg-white/10 backdrop-blur-sm rounded-lg p-2 w-[80vw] max-w-3xl h-[50vh]">
+          <div className="flex-1 relative h-full w-full overflow-hidden rounded-xl">
             {certificates.map((cert, index) => (
               <motion.div
                 key={cert.id}
@@ -140,13 +140,10 @@ export default function ImageShowcase() {
                     src={cert.src}
                     alt={cert.alt}
                     fill
-                    className="object-cover rounded-lg"
+                    className="object-contain rounded-xl overflow-hidden"
                     priority={index === currentIndex}
                   />
                 </div>
-                <h3 className="text-white text-center mt-2 text-lg font-semibold">
-                  {cert.title}
-                </h3>
               </motion.div>
             ))}
           </div>
@@ -163,29 +160,34 @@ export default function ImageShowcase() {
 
       {/* Title */}
       <motion.div
-        className="absolute top-[3%] text-center w-full transform -translate-x-1/2 z-40"
+        className="absolute bg-gradient-to-b from-black/80 to-transparent top-0 pt-10 text-center w-full transform -translate-x-1/2 z-40"
         style={{ scale: textScale }}
       >
         <span className="relative text-white text-center w-full text-4xl md:text-6xl lg:text-[14rem] max-w-5xl font-bold leading-relaxed tracking-tighter">
           Certifications
         </span>
       </motion.div>
-      <div className='fixed bottom-40 flex justify-center items-center gap-[400px] text-center h-10 w-full z-[9999999]'>
+      <div className='fixed  bottom-40 flex justify-center items-center gap-3 text-center h-10 w-full z-[9999999]'>
+      <div className='bg-white/10 backdrop-blur-xl flex justify-center items-center gap-3 text-center p-2 rounded-full z-[9999999]'>
+
       <button 
             onClick={prevSlide}
-            className="p-2 hover:bg-white/20 rounded-full transition-colors cursor-pointer"
+            className="p-2 hover:scale-125 bg-white/10 rounded-full transition-all duration-300 z-50 cursor-pointer"
             style={{ cursor: 'pointer' }}
-          >
-            <FiChevronsLeft className='text-white text-2xl'/>
+            >
+            <IoIosArrowBack className='text-white text-2xl'/>
           </button>
+          <h3 className="text-white text-center text-xl font-bold min-w-[400px]">{certificates[currentIndex]?.title}</h3>
       <button 
             onClick={nextSlide}
-            className="p-2 hover:bg-white/20 rounded-full transition-colors z-50 cursor-pointer"
+            className="p-2 hover:scale-125 bg-white/10 rounded-full transition-all duration-300 z-50 cursor-pointer"
             style={{ cursor: 'pointer' }}
-          >
-            <FiChevronsRight className='text-white text-2xl'/>
+            >
+            <IoIosArrowBack className='rotate-180 text-white text-2xl'/>
           </button>
+            </div>
       </div>
+      <div className='fixed bottom-0 bg-gradient-to-t from-black to-transparent flex justify-center items-center gap-3 text-center h-[20vh] w-full z-[999]'/>
     </section>
   );
 } 
