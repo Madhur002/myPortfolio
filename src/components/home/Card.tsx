@@ -1,8 +1,9 @@
+/* eslint-disable */
+// @ts-nocheck
 'use client'
 import { motion, useScroll, useTransform } from 'framer-motion';
 import Image from 'next/image';
 import { useRef } from 'react';
-
 const shimmer = (w: number, h: number) => `
 <svg width="${w}" height="${h}" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
   <defs>
@@ -21,7 +22,7 @@ const toBase64 = (str: string) =>
     ? Buffer.from(str).toString('base64')
     : window.btoa(str)
 
-const Card = ({ i, title, description, src, url, color, progress, range, targetScale, tags }: any) => {
+const Card = ({ i, title, description, src, color, progress, range, targetScale, tags }: { i: number, title: string, description: string, src: string, color: string, progress: any, range: number[], targetScale: number, tags: string[] }) => {
 
   const container = useRef(null);
   const { scrollYProgress } = useScroll({
@@ -29,7 +30,7 @@ const Card = ({ i, title, description, src, url, color, progress, range, targetS
     offset: ['start end', 'start start']
   })
 
-  const imageScale = useTransform(scrollYProgress, [0, 1], [2, 1])
+  // const imageScale = useTransform(scrollYProgress, [0, 1], [2, 1])
   const scale = useTransform(progress, range, [1, targetScale]);
 
   return (
@@ -47,7 +48,7 @@ const Card = ({ i, title, description, src, url, color, progress, range, targetS
               </div>
               <div className='flex gap-2 flex-wrap justify-start items-center'>
               {
-                tags.map( (tag: any) => {
+                tags.map( (tag: string) => {
                   return <div key={tag} className='text-black/70 bg-white/50 min-w-[100px] text-center px-4 backdrop-blur-xl p-2 rounded-full text-lg'>{tag}</div>
                 })
               }

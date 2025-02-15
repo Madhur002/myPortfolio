@@ -1,9 +1,7 @@
 "use client"
-import { useRef, useState } from 'react';
-import Image from 'next/image';
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { ArrowLeftIcon, ArrowRightIcon } from '@heroicons/react/24/outline';
-import { FiChevronsLeft, FiChevronsRight } from 'react-icons/fi';
+import Image from 'next/image';
+import { useRef, useState } from 'react';
 import { IoIosArrowBack } from "react-icons/io";
 
 const certificates = [

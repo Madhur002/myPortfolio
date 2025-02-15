@@ -1,10 +1,9 @@
 'use client';
 
 import Layout from '@/components/layout/Layout';
+import Lenis from 'lenis';
 import dynamic from 'next/dynamic';
-import { motion } from 'framer-motion';
 import { useEffect } from 'react';
-import Lenis from 'lenis'
 
 const Hero = dynamic(() => import('@/components/home/Hero'), {
   loading: () => <div>Loading...</div>,
@@ -18,14 +17,6 @@ const ImageShowcase = dynamic(() => import('@/components/home/ImageShowcase'), {
   loading: () => <div>Loading...</div>,
 });
 
-const Technologies = dynamic(() => import('@/components/home/Technologies'), {
-  loading: () => <div>Loading...</div>,
-});
-
-const About = dynamic(() => import('@/components/home/About'), {
-  loading: () => <div>Loading...</div>,
-});
-
 const Services = dynamic(() => import('@/components/home/Services'), {
   loading: () => <div>Loading...</div>,
 });
@@ -36,7 +27,7 @@ export default function Home() {
   useEffect( () => {
     const lenis = new Lenis()
   
-    function raf(time: any) {
+    function raf(time: number) {
       lenis.raf(time)
       requestAnimationFrame(raf)
     }

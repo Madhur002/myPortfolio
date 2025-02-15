@@ -8,12 +8,12 @@ export default function CustomCursor() {
   const [cursorText, setCursorText] = useState('');
 
   useEffect(() => {
-    const updateMousePosition = (e: any) => {
+    const updateMousePosition = (e: MouseEvent) => {
       setMousePosition({ x: e.clientX, y: e.clientY });
     };
 
-    const handleMouseOver = (e: any) => {
-      const target:any = e.target as HTMLElement;
+    const handleMouseOver = (e: MouseEvent) => {
+      const target = e.target as HTMLElement;
       try {
         if (target && target?.classList && target?.classList?.contains('hovered-mouse')) {
           setIsHovered(true);
@@ -24,8 +24,8 @@ export default function CustomCursor() {
       }
     };
 
-    const handleMouseOut = (e: any) => {
-      const target:any = e.target as HTMLElement;
+    const handleMouseOut = (e: MouseEvent) => {
+      const target = e.target as HTMLElement;
       try {
         if (target && target?.classList && target?.classList?.contains('hovered-mouse')) {
           setIsHovered(false);
@@ -49,7 +49,8 @@ export default function CustomCursor() {
 
   return (
     <motion.div
-      className="fixed flex items-center justify-center bg-purple-500 rounded-full pointer-events-none z-[99999999]"
+      className="fixed flex items-center justify-center bg-purple-500 rounded-full pointer-events-none"
+      style={{ zIndex: 99999999 }}
       animate={{
         x: mousePosition.x - (isHovered ? 40 : 8),
         y: mousePosition.y - (isHovered ? 40 : 8),
@@ -64,7 +65,7 @@ export default function CustomCursor() {
       }}
     >
       {isHovered && cursorText && (
-        <span className="text-white text-sm font-bold whitespace-nowrap">
+        <span className="text-white text-sm whitespace-nowrap">
           {cursorText}
         </span>
       )}

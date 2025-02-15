@@ -1,7 +1,7 @@
 'use client';
 
-import { motion, AnimatePresence, progress } from 'framer-motion';
-import { useState, useEffect } from 'react';
+import { AnimatePresence, motion } from 'framer-motion';
+import { useEffect, useState } from 'react';
 import { FaAws, FaCode, FaCss3, FaGithub, FaHtml5, FaJsSquare, FaNodeJs, FaReact } from 'react-icons/fa';
 import { RiNextjsFill } from "react-icons/ri";
 import { SiMongodb } from 'react-icons/si';

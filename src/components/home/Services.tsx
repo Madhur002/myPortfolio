@@ -1,9 +1,9 @@
 "use client"
 import { projects } from '@/utils/data';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { motion, useScroll } from 'framer-motion';
+import Lenis from 'lenis';
 import { useEffect, useRef } from 'react';
 import Card from './Card';
-import Lenis from 'lenis';
 
 export default function Services() {
   const container = useRef(null);
@@ -15,7 +15,7 @@ export default function Services() {
   useEffect( () => {
     const lenis = new Lenis()
   
-    function raf(time: any) {
+    function raf(time: number) {
       lenis.raf(time)
       requestAnimationFrame(raf)
     }

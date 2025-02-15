@@ -1,8 +1,7 @@
 "use client"
 import { motion } from 'framer-motion';
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { FaHeart } from 'react-icons/fa';
-import { PiFireDuotone } from 'react-icons/pi';
 
 export default function FireAnimation({ isActive }: { isActive: boolean }) {
   const [particles, setParticles] = useState<{ id: number; x: number; y: number }[]>([]);
